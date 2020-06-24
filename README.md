@@ -4,6 +4,8 @@ Github Action that gets the latest tag from git
 
 ![Example output showing this action in action](images/output.png)
 
+> TODO: NEED TO UPDATE DOCUMENTATION
+
 ## Output
 
 This action has only one output, namely, `tag` for the latest tag this action finds. When no tag is found or another 
