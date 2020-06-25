@@ -27,13 +27,13 @@ exec(`git for-each-ref --sort=tag --sort=-authordate refs/tags/ --format="%(*ref
                 console.log('RELEASE_CANIDATE', rev);
                 console.log('\x1b[32m%s\x1b[0m', `Found tag: ${rev}`);
                 console.log(`::set-output name=tag::${rev}`);
-                process.exit(1);
+                process.exit(0);
                 break;
             } else {
                 console.log('NO_RELEASE_CANIDATE', rev);
                 console.log('\x1b[32m%s\x1b[0m', `Found tag: ${rev}`);
                 console.log(`::set-output name=tag::${rev}`);
-                process.exit(1);
+                process.exit(0);
                 break;
             }
         } 
