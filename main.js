@@ -14,7 +14,7 @@ exec(`git for-each-ref --sort=tag --sort=-authordate refs/tags/ --format="%(*ref
     const arrayOfRevs = revs.split("\n");
     arrayOfRevs.pop();
 
-    for (let rev of arrayOfRevs) {
+    for (let [i, rev] of arrayOfRevs.entries()) {
         if (err) {
             console.log('\x1b[33m%s\x1b[0m', 'Could not find any tags because: ');
             console.log('\x1b[31m%s\x1b[0m', stderr);
@@ -22,21 +22,21 @@ exec(`git for-each-ref --sort=tag --sort=-authordate refs/tags/ --format="%(*ref
 
             return;
         }
-
-
-        if (process.env.RELEASE_CANIDATE && rev.includes('-rc')) {
-            console.log('RELEASE_CANIDATE', rev);
-            console.log('\x1b[32m%s\x1b[0m', `Found tag: ${rev}`);
-            console.log(`::set-output name=tag::${rev}`);
-            process.exit(1);
-            break;
-        } else {
-            console.log('NO_RELEASE_CANIDATE', rev);
-            console.log('\x1b[32m%s\x1b[0m', `Found tag: ${rev}`);
-            console.log(`::set-output name=tag::${rev}`);
-            process.exit(1);
-            break;
-        }
+        if (i > 0) {
+            if (process.env.RELEASE_CANIDATE && rev.includes('-rc')) {
+                console.log('RELEASE_CANIDATE', rev);
+                console.log('\x1b[32m%s\x1b[0m', `Found tag: ${rev}`);
+                console.log(`::set-output name=tag::${rev}`);
+                process.exit(1);
+                break;
+            } else {
+                console.log('NO_RELEASE_CANIDATE', rev);
+                console.log('\x1b[32m%s\x1b[0m', `Found tag: ${rev}`);
+                console.log(`::set-output name=tag::${rev}`);
+                process.exit(1);
+                break;
+            }
+        } 
     }
     
 });
