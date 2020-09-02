@@ -7,6 +7,10 @@ const RELEASE_REGEX = () => {
         return "v[0-9]\.[0-9]\.[0-9]-rc[0-9]";
     } else if (process.env.ENVIRONMENT === 'stg3') {
         return "v[0-9]\.[0-9]\.[0-9]-stg[0-9]";
+    } else if (process.env.ENVIRONMENT === 'stg3wl') {
+        return "v[0-9]\.[0-9]\.[0-9]-stgwl[0-9]";
+    } else if (process.env.ENVIRONMENT === 'wl') {
+        return "v[0-9]\.[0-9]\.[0-9]-wl[0-9]";    
     } else {
         return null;
     }
@@ -57,7 +61,7 @@ exec(`git for-each-ref --sort=tag --sort=-authordate refs/tags/ --format="%(*ref
                 process.exit(0);
                 break;
             }
-        } 
+        }
     }
-    
+
 });
