@@ -10,7 +10,11 @@ const RELEASE_REGEX = () => {
     } else if (process.env.ENVIRONMENT === 'stg3wl') {
         return "v[0-9]\.[0-9]\.[0-9]-stgwl[0-9]";
     } else if (process.env.ENVIRONMENT === 'wl') {
-        return "v[0-9]\.[0-9]\.[0-9]-wl[0-9]";    
+        return "v[0-9]\.[0-9]\.[0-9]-wl[0-9]";
+    } else if (process.env.ENVIRONMENT === 'mg') {
+        return "v[0-9]\.[0-9]\.[0-9]-mg[0-9]";
+    } else if (process.env.ENVIRONMENT === 'dw') {
+        return "v[0-9]\.[0-9]\.[0-9]-dw[0-9]";
     } else {
         return null;
     }
